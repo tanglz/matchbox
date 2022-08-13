@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Lizhen Tang">
+    <title>{% block title %}{% endblock %} - Matchbox</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body class="bg-light">
+   <main>
+     <header>
+            <div class="px-3 py-2 bg-dark text-white">
+              <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                  <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Matchbox"><use xlink:href="#Matchbox"/></svg>
+                  </a>
+
+                  <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                    <li>
+                      <a href="#" class="nav-link text-secondary">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"/></svg>
+                        Home
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="nav-link text-white">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#products"/></svg>
+                        Products
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-3 py-2 border-bottom mb-3">
+              <div class="container d-flex flex-wrap justify-content-center">
+                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="text-end">
+                  {% if user %}
+                    <span class="text-primary">{{ user.firstname }}</span><span class="text-primary"> {{ user.lastname }}</span>
+                    <a class="link-dark" href="{{ url_for('auth.logout') }}">Log Out</a>
+                  {% else %}
+                    <a class="link-primary" href="{{ url_for('auth.register') }}">Register</a>
+                    <a class="link-dark" href="{{ url_for('auth.login') }}">Log In</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </header>
+    <div class="container">
+
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+
+    </div>
+     <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022 Matchbox</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+   </main>
+  <script src = "{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

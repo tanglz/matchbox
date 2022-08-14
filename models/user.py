@@ -2,7 +2,7 @@ from datetime import datetime
 
 from sqlalchemy import Column, Integer, String, DateTime
 
-from flaskr.mysql_connector import Base, db_session
+from mysql_connector import Base, db_session
 
 
 class User(Base):

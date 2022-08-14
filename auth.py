@@ -4,7 +4,7 @@ from flask import (
 from mysql.connector import Error
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from flaskr.models.user import User
+from models.user import User
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 

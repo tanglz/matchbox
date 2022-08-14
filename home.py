@@ -2,7 +2,7 @@ from flask import (
     Blueprint, render_template, session
 )
 
-from flaskr.models.user import User
+from models.user import User
 
 he = Blueprint('home', __name__, url_prefix='/home')
 
